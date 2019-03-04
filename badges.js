@@ -18,17 +18,17 @@ const util = require('util');
 let Chaincode = class {
 
   /**
-   * The Init method is called when the Smart Contract 'carauction' is instantiated by the 
+   * The Init method is called when the Smart Contract 'badges' is instantiated by the 
    * blockchain network. Best practice is to have any Ledger initialization in separate
    * function -- see initLedger()
    */
   async Init(stub) {
-    console.info('=========== Instantiated fabcar chaincode ===========');
+    console.info('=========== Instantiated badges chaincode ===========');
     return shim.success();
   }
   /**
    * The Invoke method is called as a result of an application request to run the 
-   * Smart Contract 'carauction'. The calling application program has also specified 
+   * Smart Contract 'badges'. The calling application program has also specified 
    * the particular smart contract function to be called, with arguments
    */
   async Invoke(stub) {
@@ -56,7 +56,6 @@ let Chaincode = class {
    */
   async initLedger(stub, args) {
     console.info('============= START : Initialize Ledger ===========');
-
     let member1 = {};
     member1.balance = 5000;
     member1.firstName = 'Amy';
@@ -89,6 +88,7 @@ let Chaincode = class {
     await stub.putState('1234', Buffer.from(JSON.stringify(vehicle)));
     await stub.putState('ABCD', Buffer.from(JSON.stringify(vehicleListing)));
 
+
     console.info('============= END : Initialize Ledger ===========');
   }
 
@@ -106,6 +106,7 @@ let Chaincode = class {
     let query = args[0];
 
     let queryAsBytes = await stub.getState(query); //get the car from chaincode state
+    console.log(queryAsBytes.toString())
     if (!queryAsBytes || queryAsBytes.toString().length <= 0) {
       throw new Error('key' + ' does not exist: ');
     }
@@ -145,19 +146,28 @@ let Chaincode = class {
    * onSuccess - create and update the state with a new vehicle object  
    */
   async createBadge(stub, args) {
+    console.log(args.length)
+    console.log(args)
     console.info('============= START : Create Badge ===========');
-    if (args.length != 4) {
+    // if (args.length != 2) {
+    //   throw new Error('Incorrect number of arguments. Expecting 2');
+    // }
+    const badge = JSON.parse(args[1])
+
+    await stub.putState(badge.id, Buffer.from(JSON.stringify(badge)));
+    console.info('============= END : Create Badge ===========');
+  }
+  async createAward(stub, args) {
+    console.info('============= START : Create Award ===========');
+    if (args.length != 2) {
       throw new Error('Incorrect number of arguments. Expecting 2');
     }
+    const {awards} = JSON.stringify(args[1])
+    for(const award of awards){
+      await stub.putState(award.id, Buffer.from(JSON.stringify(badge)));
+    }
 
-    var badge = {
-      owner: args[1],
-      name:args[2],
-      description:args[3]
-    };
-
-    await stub.putState(args[0], Buffer.from(JSON.stringify(badge)));
-    console.info('============= END : Create Badge ===========');
+    console.info('============= END : Create Award ===========');
   }
 
   /**
