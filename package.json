@@ -1,6 +1,6 @@
 {
 	"name": "badges",
-	"version": "0.0.19",
+	"version": "0.0.21",
 	"description": "main badgewell chaincode for manging badges in node.js",
 	"engines": {
 		"node": ">=8.4.0",

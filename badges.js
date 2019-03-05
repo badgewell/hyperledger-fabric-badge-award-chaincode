@@ -84,8 +84,48 @@ let Chaincode = class {
     return queryAsBytes;
 
   }
+  async getBadge(stub, args) {
+    console.info('============= START : Query method ===========');
+    if (args.length != 1) {
+      throw new Error('Incorrect number of arguments. Expecting 1');
+    }
 
-    /**
+    let query = args[0];
+
+    let queryAsBytes = await stub.getState(query); //get the car from chaincode state
+    console.log(queryAsBytes.toString())
+    if (!queryAsBytes || queryAsBytes.toString().length <= 0) {
+      throw new Error('key' + ' does not exist: ');
+    }
+    console.info('query response: ');
+    console.info(queryAsBytes.toString());
+    console.info('============= END : Query method ===========');
+
+    return queryAsBytes;
+
+  }
+  async getAward(stub, args) {
+    console.info('============= START : Query method ===========');
+    if (args.length != 1) {
+      throw new Error('Incorrect number of arguments. Expecting 1');
+    }
+
+    let query = args[0];
+
+    let queryAsBytes = await stub.getState(query); //get the car from chaincode state
+    console.log(queryAsBytes.toString())
+    if (!queryAsBytes || queryAsBytes.toString().length <= 0) {
+      throw new Error('key' + ' does not exist: ');
+    }
+    console.info('query response: ');
+    console.info(queryAsBytes.toString());
+    console.info('============= END : Query method ===========');
+
+    return queryAsBytes;
+
+  }
+
+   /**
    * Create a badge object in the state  
    * @param arg[0] - content of the badge
    * onSuccess - create and update the state with a new badge object  
@@ -104,6 +144,24 @@ let Chaincode = class {
   }
 
    /**
+   * update a badge object in the state  
+   * @param arg[0] - content of the badge
+   * onSuccess - update the state with a  badge object  
+   */
+  async updateBadge(stub, args) {
+    console.log(args.length)
+    console.log(args)
+    console.info('============= START : Update Badge ===========');
+    // if (args.length != 2) {
+    //   throw new Error('Incorrect number of arguments. Expecting 2');
+    // }
+    const badge = JSON.parse(args[0])
+
+    await stub.putState(badge.id, Buffer.from(JSON.stringify(badge)));
+    console.info('============= END : Update Badge ===========');
+  }
+
+   /**
    * Create a award  object in the state  
    * @param arg[0] - content of the award
    * onSuccess - create and update the state with a new award object  
@@ -113,12 +171,30 @@ let Chaincode = class {
     // if (args.length != 2) {
     //   throw new Error('Incorrect number of arguments. Expecting 2');
     // }
-    const {awards} = JSON.stringify(args[0])
+    const {awards} = JSON.parse(args[0])
     for(const award of awards){
-      await stub.putState(award.id, Buffer.from(JSON.stringify(badge)));
+      await stub.putState(award.id, Buffer.from(JSON.stringify(award)));
     }
 
     console.info('============= END : Create Award ===========');
+  }
+
+   /**
+   * Update a award  object in the state  
+   * @param arg[0] - content of the award
+   * onSuccess - update the state with a  award object  
+   */
+  async updateAward(stub, args) {
+    console.info('============= START : Update Award ===========');
+    // if (args.length != 2) {
+    //   throw new Error('Incorrect number of arguments. Expecting 2');
+    // }
+    const {awards} = JSON.parse(args[0])
+    for(const award of awards){
+      await stub.putState(award.id, Buffer.from(JSON.stringify(award)));
+    }
+
+    console.info('============= END : Update Award ===========');
   }
 
 };
