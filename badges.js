@@ -138,6 +138,7 @@ let Chaincode = class {
     //   throw new Error('Incorrect number of arguments. Expecting 2');
     // }
     const badge = JSON.parse(args[0])
+    badge.type = 'badge'
 
     await stub.putState(badge.id, Buffer.from(JSON.stringify(badge)));
     console.info('============= END : Create Badge ===========');
@@ -156,6 +157,7 @@ let Chaincode = class {
     //   throw new Error('Incorrect number of arguments. Expecting 2');
     // }
     const badge = JSON.parse(args[0])
+    badge.type = 'badge'
 
     await stub.putState(badge.id, Buffer.from(JSON.stringify(badge)));
     console.info('============= END : Update Badge ===========');
@@ -173,6 +175,7 @@ let Chaincode = class {
     // }
     const {awards} = JSON.parse(args[0])
     for(const award of awards){
+      award.type = 'award'
       await stub.putState(award.id, Buffer.from(JSON.stringify(award)));
     }
 
@@ -191,6 +194,7 @@ let Chaincode = class {
     // }
     const {awards} = JSON.parse(args[0])
     for(const award of awards){
+      award.type = 'award'
       await stub.putState(award.id, Buffer.from(JSON.stringify(award)));
     }
 
