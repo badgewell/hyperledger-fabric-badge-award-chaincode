@@ -85,7 +85,7 @@ let Chaincode = class {
 
   }
   async getBadge(stub, args) {
-    console.info('============= START : Query method ===========');
+    console.info('============= START : getBadge method ===========');
     if (args.length != 1) {
       throw new Error('Incorrect number of arguments. Expecting 1');
     }
@@ -99,13 +99,13 @@ let Chaincode = class {
     }
     console.info('query response: ');
     console.info(queryAsBytes.toString());
-    console.info('============= END : Query method ===========');
+    console.info('============= END : getBadge method ===========');
 
     return queryAsBytes;
 
   }
   async getAward(stub, args) {
-    console.info('============= START : Query method ===========');
+    console.info('============= START : getAward method ===========');
     if (args.length != 1) {
       throw new Error('Incorrect number of arguments. Expecting 1');
     }
@@ -119,9 +119,39 @@ let Chaincode = class {
     }
     console.info('query response: ');
     console.info(queryAsBytes.toString());
-    console.info('============= END : Query method ===========');
+    console.info('============= END : getAward method ===========');
 
     return queryAsBytes;
+
+  }
+  async getAwardAndBadge(stub, args) {
+    console.info('============= START : getAwardAndBadge method ===========');
+    if (args.length != 1) {
+      throw new Error('Incorrect number of arguments. Expecting 1');
+    }
+
+    let query = args[0];
+
+    let AwardAsBytes = await stub.getState(query); //get the car from chaincode state
+    console.log(AwardAsBytes.toString())
+    const award = JSON.parse(AwardAsBytes.toString())
+    const badgeId = award.blockchainBadgeId
+    if (!AwardAsBytes || AwardAsBytes.toString().length <= 0) {
+      throw new Error('key award' + ' does not exist: '+ query);
+    }
+
+    let BadgeAsBytes = await stub.getState(badgeId); //get the car from chaincode state
+    console.log(BadgeAsBytes.toString())
+    const badge = JSON.parse(BadgeAsBytes)
+    if (!BadgeAsBytes || BadgeAsBytes.toString().length <= 0) {
+      throw new Error('key badge' + ' does not exist: ' + badgeId );
+    }
+    const response = {...badge , ...award }
+    console.info('query response: ');
+    console.info(JSON.stringify(response)); 
+    console.info('============= END : getAwardAndBadge method ===========');
+
+    return Buffer.from(JSON.stringify(response));
 
   }
 
@@ -158,7 +188,6 @@ let Chaincode = class {
     // }
     const badge = JSON.parse(args[0])
     badge.type = 'badge'
-
     await stub.putState(badge.id, Buffer.from(JSON.stringify(badge)));
     console.info('============= END : Update Badge ===========');
   }
