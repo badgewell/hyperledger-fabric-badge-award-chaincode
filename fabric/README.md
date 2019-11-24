@@ -1,4 +1,4 @@
-# hyperledger-fabric-badge-award-chaincode
+# hyperledger-fabric
 > A basic chaincode that handles badges and awards recording.
 > The contract uses the low level fabric-shrim 1.2 not the latest SDK
 ## Functionalities
