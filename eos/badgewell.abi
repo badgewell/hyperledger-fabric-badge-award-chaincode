@@ -1,0 +1,82 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "awards",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "awardsMap",
+                    "type": "pair_string_string[]"
+                }
+            ]
+        },
+        {
+            "name": "erase",
+            "base": "",
+            "fields": [
+                {
+                    "name": "awardId",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "pair_string_string",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "string"
+                },
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "save",
+            "base": "",
+            "fields": [
+                {
+                    "name": "awardId",
+                    "type": "string"
+                },
+                {
+                    "name": "hash",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "erase",
+            "type": "erase",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "save",
+            "type": "save",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "awards",
+            "type": "awards",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}

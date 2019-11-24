@@ -1,0 +1,21 @@
+{
+  "main": "src/badgewell.cpp",
+  "contract": "badgewell",
+  "include": "",
+  "resource": "",
+  "cdt": "v1.6.2",
+  "output": "",
+  "scripts": {
+    "build": ""
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "",
+    "local": "eosio.token"
+  },
+  "test": {
+    "npmClient": "npm"
+  }
+}

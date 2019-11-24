@@ -1,0 +1,21 @@
+{
+  "main": "src/test.cpp",
+  "contract": "test",
+  "include": "",
+  "resource": "",
+  "cdt": "v1.6.2",
+  "output": "",
+  "scripts": {
+    "build": ""
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "slimshadyxvx",
+    "jungle": "",
+    "local": "eosio.token"
+  },
+  "test": {
+    "npmClient": ""
+  }
+}
