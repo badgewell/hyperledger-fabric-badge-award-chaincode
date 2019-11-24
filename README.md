@@ -1,10 +1,6 @@
 # Badges and Awards experminets
 > This project includes examples in eos hyperledger fabric and 3box.
 
-> The contract uses the low level fabric-shrim 1.2 not the latest SDK.
-
-> The 3box code was made for ethberlin hackthon by badgewell team members.
-
 ## Functionalities
 - Create/Update Badges
 - Create/Update awards
