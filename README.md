@@ -1,5 +1,5 @@
 # Badges and Awards experminets
-> This project includes examples in eos hyperledger fabric and 3box.
+> This project includes examples in eos , hyperledger fabric and 3box.
 
 ## Functionalities
 - Create/Update Badges
