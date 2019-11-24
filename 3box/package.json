@@ -1,0 +1,22 @@
+{
+  "name": "@hadyrashwan/updateablecertficates",
+  "version": "1.0.0",
+  "description": "> Our objective to do a bear minimum implantation that allows the certificates and its awards to be updated and versioned.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hadyrashwan/updateableCertficates.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hadyrashwan/updateableCertficates/issues"
+  },
+  "homepage": "https://github.com/hadyrashwan/updateableCertficates#readme",
+  "dependencies": {
+    "uuid": "^3.3.3"
+  }
+}
