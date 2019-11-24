@@ -1,4 +1,4 @@
-# Badgable (Badgewell team in Ethberlin Hackthon)
+# 3box
 
 > This was made in Ethberlin hackathon. This repo includes 3box logic only and is no longer maintained.
  
